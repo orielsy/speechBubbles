@@ -80,6 +80,7 @@ function msgMounted(key) {
 }
 
 function getMsgsBoundings() {
+  // TODO: Batch geometry reads before DOM writes to reduce forced-layout risk.
   currentDomRects = messageRefs.value.map((reference, x) => {
     if (!reference || !reference.$el) return { y: 0, top: 0 };
     const domRects = reference.$el.getBoundingClientRect();
