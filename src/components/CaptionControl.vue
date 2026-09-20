@@ -101,6 +101,7 @@ function startRecording() {
     .then((stream) => {
       globalStream = stream;
       const input = context.createMediaStreamSource(stream);
+      // TODO: Replace this legacy ScriptProcessorNode path with AudioWorkletNode.
       processor = context.createScriptProcessor(bufferSize, 1, 1);
       processor.onaudioprocess = (e) => processAudio(e);
       input.connect(processor);
